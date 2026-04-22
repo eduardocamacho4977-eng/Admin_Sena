@@ -10,6 +10,6 @@ class Computer extends Model
     use HasFactory;
 
     public function apprentices(){
-        return $this->hasMany(Apprentice::class);
+        return $this->hasMany('App\Models\Apprentice');
     }
 }

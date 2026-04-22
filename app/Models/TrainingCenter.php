@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class TrainingCenter extends Model
 {
     use HasFactory;
+
+    public function areas(){
+        return $this->hasMany('App\Models\Area');
+    }
 
     public function courses(){
         return $this->hasMany('App\Models\Course');

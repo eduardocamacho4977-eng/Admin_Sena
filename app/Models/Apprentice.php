@@ -10,10 +10,10 @@ class Apprentice extends Model
     use HasFactory;
 
     public function course(){
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo('App\Models\Course');
     }
 
     public function computer(){
-        return $this->belongsTo(Computer::class);
+        return $this->belongsTo('App\Models\Computer');
     }
 }

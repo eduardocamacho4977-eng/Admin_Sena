@@ -10,18 +10,18 @@ class Course extends Model
     use HasFactory;
 
     public function area(){
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo('App\Models\Area');
     }
 
     public function trainingCenter(){
-        return $this->belongsTo(TrainingCenter::class);
+        return $this->belongsTo('App\Models\TrainingCenter');
     }
 
     public function teachers(){
-        return $this->belongsToMany(Teacher::class);
-    }
+    return $this->belongsToMany('App\Models\Teacher','course_teachers');
+}
 
     public function apprentices(){
-        return $this->hasMany(Apprentice::class);
+        return $this->hasMany('App\Models\Apprentice');
     }
 }
