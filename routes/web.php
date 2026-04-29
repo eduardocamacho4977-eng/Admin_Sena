@@ -7,6 +7,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\TrainingCenterController;
+use App\Http\Controllers\Consultas;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +17,11 @@ use App\Http\Controllers\TrainingCenterController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/consultas', function () {
+    return "Funciona";
+});
 
-
+Route::get('/consultas',[Consultas::class,'consultas']);
 Route::get('/apprentices',[ApprenticeController::class,'index']);
 Route::get('/courses',[CourseController::class,'index']);
 Route::get('/teachers',[TeacherController::class,'index']);
