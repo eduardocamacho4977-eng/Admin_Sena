@@ -17,12 +17,25 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Área Id</label>
-                <input type="number" name="area_id" class="form-control" value="{{ $teacher->area_id }}">
-            </div>
+                 <select name="area_id" class="form-select">
+               @foreach ($areas as $area)
+                <option value="{{ $area->id }}" {{ $teacher->area_id == $area->id ? 'selected' : '' }}>
+                    {{ $area->id }} - {{ $area->name }}
+                </option>
+            @endforeach
+        </select>
+            </div>      
             <div class="mb-3">
                 <label class="form-label">Centro Id</label>
-                <input type="number" name="training_center_id" class="form-control" value="{{ $teacher->training_center_id }}">
-            </div>
+                
+                <select name="training_center_id" class="form-select">
+                    @foreach ($training_centers as $training_center)
+                        <option value="{{ $training_center->id }}" {{ $teacher->training_center_id == $training_center->id ? 'selected' : '' }}>
+                            {{ $training_center->id }} - {{ $training_center->name }}
+                        </option>
+                    @endforeach
+                </select>
+
             <button class="btn btn-primary">Guardar</button>
             <a href="{{ route('teacher.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>

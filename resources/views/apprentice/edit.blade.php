@@ -19,14 +19,27 @@
                 <label class="form-label">Teléfono</label>
                 <input type="text" name="cell_number" class="form-control" value="{{ $apprentice->cell_number }}">
             </div>
-            <div class="mb-3">
-                <label class="form-label">Curso Id</label>
-                <input type="number" name="course_id" class="form-control" value="{{ $apprentice->course_id }}">
+          
+                <label class="form-label">Curso</label>
+
+                <select name="course_id" class="form-select">
+                    @foreach ($courses as $course)
+                        <option value="{{ $course->id }}" {{ $apprentice->course_id == $course->id ? 'selected' : '' }}>
+                            {{ $course->id }} - {{ $course->course_number }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+            
             <div class="mb-3">
-                <label class="form-label">Computadora Id</label>
-                <input type="number" name="computer_id" class="form-control" value="{{ $apprentice->computer_id }}">
-            </div>
+                <label class="form-label">Computadora</label>
+           <select name="computer_id" class="form-select">
+            @foreach ($computers as $computer)
+                <option value="{{ $computer->id }}" {{ $apprentice->computer_id == $computer->id ? 'selected' : '' }}>
+                    {{ $computer->id }} - {{ $computer->number }}
+                </option>
+            @endforeach
+        </select>
             <button class="btn btn-primary">Guardar</button>
             <a href="{{ route('apprentice.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>

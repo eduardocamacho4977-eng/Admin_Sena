@@ -29,7 +29,7 @@
                         <td>{{ $course->course_number }}</td>
                         <td>{{ $course->day }}</td>
                         <td>{{ $course->area_id }}</td>
-                        <td>{{ $course->area->nombre}}</td>
+                        <td>{{ $course->area->name}}</td>
                         <td>{{ $course->training_center_id }}</td>
                         <td>{{ $course->trainingCenter->name }}</td>
                         <td>
