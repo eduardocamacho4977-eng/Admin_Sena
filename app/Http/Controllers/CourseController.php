@@ -10,10 +10,28 @@ use App\Models\TrainingCenter;
 class CourseController extends Controller
 {
 
- public function index(){
-      $courses = Course::all();
+ public function index(Request $request){
+      $search = trim($request->get('search'));
+      $courses = Course::query()
+          ->with(['area', 'trainingCenter'])
+          ->when($search, function ($query, $search) {
+              $query->where(function ($q) use ($search) {
+                  $q->where('id', 'like', "%{$search}%")
+                    ->orWhere('course_number', 'like', "%{$search}%")
+                    ->orWhere('day', 'like', "%{$search}%")
+                    ->orWhere('area_id', 'like', "%{$search}%")
+                    ->orWhere('training_center_id', 'like', "%{$search}%")
+                    ->orWhereHas('area', function ($areaQuery) use ($search) {
+                        $areaQuery->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('trainingCenter', function ($centerQuery) use ($search) {
+                        $centerQuery->where('name', 'like', "%{$search}%");
+                    });
+              });
+          })
+          ->get();
 
-     return view('course.index', compact('courses'));
+     return view('course.index', compact('courses', 'search'));
     }
    
   public function show($id){

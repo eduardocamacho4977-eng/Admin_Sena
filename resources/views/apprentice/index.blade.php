@@ -4,6 +4,15 @@
     <h1>LISTAR APRENDICES</h1>
 
     <div class="container">
+        <form method="GET" action="{{ route('apprentice.index') }}" class="row g-2 mb-3">
+            <div class="col-md-8">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre, correo, teléfono, curso o computador" value="{{ $search ?? '' }}">
+            </div>
+            <div class="col-md-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="{{ route('apprentice.index') }}" class="btn btn-outline-secondary">Limpiar</a>
+            </div>
+        </form>
         <div class="mb-3">
             <a href="{{ route('apprentice.create') }}" class="btn btn-success">
                 <i class="bi bi-plus-circle"></i> Nuevo Aprendiz

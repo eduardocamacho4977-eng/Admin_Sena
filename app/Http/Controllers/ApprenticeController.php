@@ -10,10 +10,30 @@ use App\Models\Computer;
 class ApprenticeController extends Controller
 {
 
-public function index(){
-      $apprentices = Apprentice::all();
+public function index(Request $request){
+      $search = trim($request->get('search'));
+      $apprentices = Apprentice::query()
+          ->with(['course', 'computer'])
+          ->when($search, function ($query, $search) {
+              $query->where(function ($q) use ($search) {
+                  $q->where('id', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('cell_number', 'like', "%{$search}%")
+                    ->orWhere('course_id', 'like', "%{$search}%")
+                    ->orWhere('computer_id', 'like', "%{$search}%")
+                    ->orWhereHas('course', function ($courseQuery) use ($search) {
+                        $courseQuery->where('course_number', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('computer', function ($computerQuery) use ($search) {
+                        $computerQuery->where('number', 'like', "%{$search}%")
+                            ->orWhere('brand', 'like', "%{$search}%");
+                    });
+              });
+          })
+          ->get();
 
-     return view('apprentice.index', compact('apprentices'));
+     return view('apprentice.index', compact('apprentices', 'search'));
 
     }
    

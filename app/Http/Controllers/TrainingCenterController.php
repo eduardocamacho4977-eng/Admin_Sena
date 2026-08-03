@@ -8,10 +8,19 @@ use App\Models\TrainingCenter;
 class TrainingCenterController extends Controller
 {
 
-   public function index(){
-      $training_centers = TrainingCenter::all();
+   public function index(Request $request){
+      $search = trim($request->get('search'));
+      $training_centers = TrainingCenter::query()
+          ->when($search, function ($query, $search) {
+              $query->where(function ($q) use ($search) {
+                  $q->where('id', 'like', "%{$search}%")
+                    ->orWhere('name', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%");
+              });
+          })
+          ->get();
 
-     return view('training_center.index', compact('training_centers'));
+     return view('training_center.index', compact('training_centers', 'search'));
     }
    
    public function show($id){

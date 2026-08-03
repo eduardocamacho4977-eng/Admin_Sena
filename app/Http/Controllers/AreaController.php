@@ -7,10 +7,16 @@ use App\Models\Area;
 
 class AreaController extends Controller
 {
-    public function index(){
-      $areas = Area::all();
+    public function index(Request $request){
+      $search = trim($request->get('search'));
+      $areas = Area::query()
+          ->when($search, function ($query, $search) {
+              $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('id', 'like', "%{$search}%");
+          })
+          ->get();
 
-     return view('area.index', compact('areas'));
+     return view('area.index', compact('areas', 'search'));
     }
    
    public function show($id){

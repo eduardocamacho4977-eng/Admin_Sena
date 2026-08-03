@@ -7,10 +7,19 @@ use App\Models\Computer;
 
 class ComputerController extends Controller
 {
-    public function index(){
-    $computers = Computer::all();
+    public function index(Request $request){
+    $search = trim($request->get('search'));
+    $computers = Computer::query()
+        ->when($search, function ($query, $search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('id', 'like', "%{$search}%")
+                  ->orWhere('number', 'like', "%{$search}%")
+                  ->orWhere('brand', 'like', "%{$search}%");
+            });
+        })
+        ->get();
 
-     return view('computer.index',compact('computers'));
+     return view('computer.index',compact('computers', 'search'));
     }
    
    public function show($id){
