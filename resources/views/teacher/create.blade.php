@@ -2,64 +2,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Formulario Teacher</h1>
+    <h1>Crear Profesor</h1>
 
-    <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
 
-        @csrf
+            @csrf
 
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="name">
-        </label>
-        <br>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
 
-        <label>
-            Correo:
-            <br>
-            <input type="email" name="email">
-        </label>
-        <br>
-        <br>
-        
-          {{--{{$area}}--}}
+            <div class="mb-3">
+                <label class="form-label">Correo</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
 
-        <label for="area_id"> area</label>
+            <div class="mb-3">
+                <label class="form-label">Área</label>
+                <select name="area_id" id="area_id" class="form-select" required>
+                    <option value="">Seleccione un área</option>
+                    @foreach($areas as $area)
+                        <option value="{{ $area->id }}">{{ $area->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-        <select name="area_id" id="area_id" class= "form-control">
-            <option value=""> Seleccione un area</option>
+            <div class="mb-3">
+                <label class="form-label">Centro de Formación</label>
+                <select name="training_center_id" id="training_center_id" class="form-select" required>
+                    <option value="">Seleccione un Centro de Formación</option>
+                    @foreach($training_centers as $training_center)
+                        <option value="{{ $training_center->id }}">{{ $training_center->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-            @foreach($areas as $area)
+            <button type="submit" class="btn btn-primary">Crear Profesor</button>
+            <a href="{{ route('teacher.index') }}" class="btn btn-secondary">Cancelar</a>
 
-                <option value="{{ $area->id }}">
-                    {{ $area->name }}
-                </option>
-
-            @endforeach
-
-        </select>
-        <br>
-        <br>
-
-        <label for="training_center_id" >Centro Formación</label>
-
-        <select name="training_center_id" id="training_center_id" class= "form-control">
-            <option value="">Seleccione un Centro Formación</option>
-
-            @foreach($training_centers as $training_centers)
-
-                <option value="{{ $training_centers->id }}">
-                    {{ $training_centers->name }}
-                </option>
-
-            @endforeach
-
-        </select>
-
-        <br><br>
-
-        <button type="submit">Crear Teacher </button>
-
-    </form>
+        </form>
+    </div>
 @endsection

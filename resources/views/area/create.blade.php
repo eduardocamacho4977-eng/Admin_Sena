@@ -2,23 +2,23 @@
 
 @section('content')
 
-    <h1>Formulario Área</h1>
+    <h1>Crear Área</h1>
 
-    <form action="{{ route('area.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <form action="{{ route('area.store') }}" method="POST" enctype="multipart/form-data">
 
-        @csrf
+            @csrf
 
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="name">
-        </label>
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
 
-        <button type="submit"> Crear area </button>
+            <button type="submit" class="btn btn-primary">Crear Área</button>
+            <a href="{{ route('area.index') }}" class="btn btn-secondary">Cancelar</a>
 
-    </form>
+        </form>
+    </div>
 
     @endsection
 

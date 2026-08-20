@@ -35,9 +35,12 @@
                         </option>
                     @endforeach
                 </select>
+            </div>
 
             <button class="btn btn-primary">Guardar</button>
             <a href="{{ route('teacher.index') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
         </form>
     </div>
 @endsection

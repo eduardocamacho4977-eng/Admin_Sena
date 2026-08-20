@@ -2,29 +2,26 @@
 
 @section('content')
 
+    <h1>Crear Computadora</h1>
 
-    <h1>Formulario Computador</h1>
+    <div class="container">
+        <form action="{{ route('computer.store') }}" method="POST" enctype="multipart/form-data">
 
-    <form action="{{ route('computer.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-        @csrf
+            <div class="mb-3">
+                <label class="form-label">Número</label>
+                <input type="number" name="number" class="form-control" required>
+            </div>
 
-        <label>
-            Número:
-            <br>
-            <input type="number" name="number">
-        </label>
-        <br>
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                <input type="text" name="brand" class="form-control" required>
+            </div>
 
-        <label>
-            Marca:
-            <br>
-            <input type="text" name="brand">
-        </label>
-        <br>
-        <br>
+            <button type="submit" class="btn btn-primary">Crear Computadora</button>
+            <a href="{{ route('computer.index') }}" class="btn btn-secondary">Cancelar</a>
 
-        <button type="submit"> Crear Computador</button>
-
-    </form>
+        </form>
+    </div>
 @endsection

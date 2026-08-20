@@ -7,6 +7,23 @@
     <title>admin sena</title>
 
     @include('includes.dependencias')
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            min-height: 100vh;
+        }
+        .container {
+            flex: 1;
+        }
+        footer {
+            margin-top: auto;
+        }
+    </style>
 
 </head>
 

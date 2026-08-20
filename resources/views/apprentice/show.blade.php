@@ -12,7 +12,7 @@
             <p><strong>Curso Id:</strong> {{ $apprentice->course_id }}</p>
             <p><strong>Curso:</strong> {{ $apprentice->course->course_number ?? 'N/A' }}</p>
             <p><strong>Computadora Id:</strong> {{ $apprentice->computer_id }}</p>
-            <p><strong>Computadora:</strong> {{ $apprentice->computer->number ?? 'N/A' }}</p>
+            <p><strong>Computadora:</strong> {{ $apprentice->computer->brand ?? 'N/A' }}</p>
             <a href="{{ route('apprentice.index') }}" class="btn btn-secondary">Volver</a>
         </div>
     </div>

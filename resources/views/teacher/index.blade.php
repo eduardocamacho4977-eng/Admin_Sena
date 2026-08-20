@@ -21,12 +21,10 @@
         <table id="idTeacher" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Id</th>
+                  
                     <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Centro Id</th>
-                    <th>Centro</th>
-                    <th>Área Id</th>
+                    <th>Correo</th>               
+                    <th>Centro</th>         
                     <th>Área</th>
                     <th>Acciones</th>
                 </tr>
@@ -34,16 +32,14 @@
             <tbody>
                 @foreach ($teachers as $teacher)
                     <tr>
-                        <td>{{ $teacher->id }}</td>
+                    
                         <td>{{ $teacher->name }}</td>
                         <td>{{ $teacher->email }}</td>
-                        <td>{{ $teacher->training_center_id }}</td>
                         <td>{{ $teacher->trainingCenter->name ?? 'N/A' }}</td>
-                        <td>{{ $teacher->area_id }}</td>
                         <td>{{ $teacher->area->name ?? 'N/A' }}</td>
                         <td>
-                            <a href="{{ route('teacher.show', $teacher->id) }}" class="btn btn-sm btn-primary">Mostrar</a>
-                            <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                            <a href="{{ route('teacher.show', $teacher->id) }}" class="btn btn-sm btn-primary">mostrar</a>
+                            <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-sm btn-secondary">editar</a>
                             <form action="{{ route('teacher.destroy', $teacher->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Eliminar profesor?')">
                                 @csrf
                                 @method('DELETE')

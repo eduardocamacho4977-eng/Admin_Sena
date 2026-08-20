@@ -21,13 +21,10 @@
         <table id="idApprentice" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
-                    <th>Curso Id</th>
                     <th>Curso</th>
-                    <th>Computadora Id</th>
                     <th>Computadora</th>
                     <th>Acciones</th>
                 </tr>
@@ -35,17 +32,14 @@
             <tbody>
                 @foreach ($apprentices as $apprentice)
                     <tr>
-                        <td>{{ $apprentice->id }}</td>
                         <td>{{ $apprentice->name }}</td>
                         <td>{{ $apprentice->email }}</td>
                         <td>{{ $apprentice->cell_number }}</td>
-                        <td>{{ $apprentice->course_id }}</td>
                         <td>{{ $apprentice->course->course_number }}</td>
-                        <td>{{ $apprentice->computer_id }}</td>
                         <td>{{ $apprentice->computer->number }}</td>
                         <td>
-                            <a href="{{ route('apprentice.show', $apprentice->id) }}" class="btn btn-sm btn-primary">Mostrar</a>
-                            <a href="{{ route('apprentice.edit', $apprentice->id) }}" class="btn btn-sm btn-secondary">Editar</a>
+                            <a href="{{ route('apprentice.show', $apprentice->id) }}" class="btn btn-sm btn-primary">mostrar</a>
+                            <a href="{{ route('apprentice.edit', $apprentice->id) }}" class="btn btn-sm btn-secondary">editar</a>
                             <form action="{{ route('apprentice.destroy', $apprentice->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Eliminar aprendiz?')">
                                 @csrf
                                 @method('DELETE')

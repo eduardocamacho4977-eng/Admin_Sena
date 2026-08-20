@@ -18,9 +18,15 @@ use App\Http\Controllers\ConsultasController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sobre-nosotros', function () {
+    return view('about');
+})->name('about');
 Route::get('/consultas', function () {
     return "Funciona";
 });
+Route::get('/admiistracion', function () {
+    return view('administracion');
+})->name('administracion');
 
  // entidades fuertes 
 

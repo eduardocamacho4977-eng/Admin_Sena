@@ -2,31 +2,27 @@
 
 @section('content')
 
-    <h1>Formulario Centro Formación</h1>
+    <h1>Crear Centro de Formación</h1>
 
-    <form action="{{ route('training_center.store') }}" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <form action="{{ route('training_center.store') }}" method="POST" enctype="multipart/form-data">
 
-        @csrf
+            @csrf
 
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="name">
-        </label>
-        <br>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
 
-        <label>
-            Ubicación:
-            <br>
-            <input type="text" name="location">
-        </label>
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label">Ubicación</label>
+                <input type="text" name="location" class="form-control" required>
+            </div>
 
-        <button type="submit"> Crear Centro</button>
+            <button type="submit" class="btn btn-primary">Crear Centro</button>
+            <a href="{{ route('training_center.index') }}" class="btn btn-secondary">Cancelar</a>
 
-    </form>
-
-    
+        </form>
+    </div>
 
 @endsection
