@@ -7,38 +7,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-    public function showLogin()
+    // Muestra el formulario de Login
+    public function showLoginForm()
     {
-        return view('login');
+        return view('auth.login'); // Asegúrate que tu vista esté en resources/views/auth/login.blade.php
     }
 
+    // Procesa el inicio de sesión
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect()->intended(route('administracion'));
+            return redirect()->intended('/')->with('success', 'Bienvenido al sistema');
         }
 
         return back()->withErrors([
-            'email' => 'El correo o la contraseña son incorrectos.',
+            'email' => 'Las credenciales ingresadas no coinciden con nuestros registros.',
         ])->onlyInput('email');
     }
 
-    // Muestra el formulario de registro
-    public function showRegister()
+    // Muestra el formulario de Registro
+    public function showRegisterForm()
     {
-        return view('register');
+        return view('auth.register');
     }
 
-    // Procesa el registro de nuevos usuarios
+    // Procesa la creación de un nuevo usuario
     public function register(Request $request)
     {
         $request->validate([
@@ -53,19 +54,18 @@ class LoginController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Inicia sesión automáticamente tras registrarse
         Auth::login($user);
 
-        return redirect()->route('administracion');
+        return redirect('/')->with('success', 'Registro completado e inicio de sesión exitoso.');
     }
 
+    // Cierra la sesión
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect('/login');
     }
 }

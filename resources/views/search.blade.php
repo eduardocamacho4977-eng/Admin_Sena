@@ -2,131 +2,103 @@
 
 @section('content')
 
-<div class="container mt-5">
-
-    <h2 class="mb-4">Resultados de búsqueda</h2>
+<div class="container py-4">
+    <h2 class="mb-4 fw-bold" style="color: #00A651;">Resultados de Búsqueda</h2>
 
     @if($search == '')
-        <div class="alert alert-info">
+        <div class="alert alert-info border-0 shadow-sm">
             Escribe algo en el buscador.
         </div>
     @else
 
-        <p>
-            Resultados para:
-            <strong>{{ $search }}</strong>
+        <p class="text-muted fs-5 mb-4">
+            Resultados para: <strong class="text-dark">{{ $search }}</strong>
         </p>
 
         {{-- CURSOS --}}
-        @if($courses->count() > 0)
-
-            <h4 class="mt-4">Cursos</h4>
-
-            @foreach($courses as $course)
-                <div class="card mb-2">
-                    <div class="card-body">
-                        {{ $course->name }}
+        @if(count($courses) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Cursos</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($courses as $course)
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>Ficha/Número:</strong> {{ $course->course_number }}</span>
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- INSTRUCTORES --}}
-        @if($teachers->count() > 0)
-
-            <h4 class="mt-4">Instructores</h4>
-
-            @foreach($teachers as $teacher)
-                <div class="card mb-2">
-                    <div class="card-body">
+        @if(count($teachers) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Instructores</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($teachers as $teacher)
+                    <div class="list-group-item">
                         {{ $teacher->name }}
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- APRENDICES --}}
-        @if($apprentices->count() > 0)
-
-            <h4 class="mt-4">Aprendices</h4>
-
-            @foreach($apprentices as $apprentice)
-                <div class="card mb-2">
-                    <div class="card-body">
+        @if(count($apprentices) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Aprendices</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($apprentices as $apprentice)
+                    <div class="list-group-item">
                         {{ $apprentice->name }}
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- ÁREAS --}}
-        @if($areas->count() > 0)
-
-            <h4 class="mt-4">Áreas</h4>
-
-            @foreach($areas as $area)
-                <div class="card mb-2">
-                    <div class="card-body">
+        @if(count($areas) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Áreas</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($areas as $area)
+                    <div class="list-group-item">
                         {{ $area->name }}
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- CENTROS --}}
-        @if($trainingCenters->count() > 0)
-
-            <h4 class="mt-4">Centros</h4>
-
-            @foreach($trainingCenters as $center)
-                <div class="card mb-2">
-                    <div class="card-body">
+        @if(count($trainingCenters) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Centros</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($trainingCenters as $center)
+                    <div class="list-group-item">
                         {{ $center->name }}
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- COMPUTADORES --}}
-        @if($computers->count() > 0)
-
-            <h4 class="mt-4">Computadores</h4>
-
-            @foreach($computers as $computer)
-                <div class="card mb-2">
-                    <div class="card-body">
-                        {{ $computer->name }}
+        @if(count($computers) > 0)
+            <h4 class="mt-4 fw-bold" style="color: #00A651;">Computadores</h4>
+            <div class="list-group mb-3 shadow-sm">
+                @foreach($computers as $computer)
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>Número de Equipo:</strong> {{ $computer->number }}</span>
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         @endif
-
 
         {{-- SIN RESULTADOS --}}
         @if(
-            $courses->count() == 0 &&
-            $teachers->count() == 0 &&
-            $apprentices->count() == 0 &&
-            $areas->count() == 0 &&
-            $trainingCenters->count() == 0 &&
-            $computers->count() == 0
+            count($courses) == 0 &&
+            count($teachers) == 0 &&
+            count($apprentices) == 0 &&
+            count($areas) == 0 &&
+            count($trainingCenters) == 0 &&
+            count($computers) == 0
         )
-
-            <div class="alert alert-warning mt-4">
-                No se encontraron resultados.
+            <div class="alert alert-warning mt-4 border-0 shadow-sm">
+                No se encontraron resultados para "<strong>{{ $search }}</strong>".
             </div>
-
         @endif
 
     @endif

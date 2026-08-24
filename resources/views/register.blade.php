@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AdminSENA</title>
+    <title>Registro - AdminSENA</title>
     @include('includes.dependencias')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -22,7 +22,7 @@
             background: #f2f2f2;
         }
 
-        .login-container {
+        .register-container {
             width: 400px;
             background: white;
             padding: 35px;
@@ -30,13 +30,13 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
-        .login-container h1 {
+        .register-container h1 {
             text-align: center;
             margin-bottom: 10px;
             color: #333;
         }
 
-        .login-container p {
+        .register-container p {
             text-align: center;
             margin-bottom: 25px;
             color: #777;
@@ -60,7 +60,7 @@
             font-size: 15px;
         }
 
-        .btn-login {
+        .btn-register {
             width: 100%;
             padding: 12px;
             border: none;
@@ -71,7 +71,7 @@
             cursor: pointer;
         }
 
-        .btn-login:hover {
+        .btn-register:hover {
             background: #2d8500;
         }
 
@@ -81,19 +81,19 @@
             font-size: 14px;
         }
 
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
         }
 
-        .register-link a {
+        .login-link a {
             color: #39a900;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -101,10 +101,10 @@
 
 <body>
 
-<div class="login-container">
+<div class="register-container">
 
     <h1>AdminSENA</h1>
-    <p>Iniciar sesión</p>
+    <p>Crear nueva cuenta</p>
 
     @if ($errors->any())
         <div class="error">
@@ -112,8 +112,20 @@
         </div>
     @endif
 
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route('register') }}" method="POST">
         @csrf
+
+        <div class="form-group">
+            <label for="name">Nombre Completo</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ old('name') }}"
+                placeholder="Ingrese su nombre"
+                required
+            >
+        </div>
 
         <div class="form-group">
             <label for="email">Correo electrónico</label>
@@ -133,17 +145,28 @@
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Ingrese su contraseña"
+                placeholder="Cree una contraseña (mín. 6 caracteres)"
                 required
             >
         </div>
 
-        <button type="submit" class="btn-login">
-            Iniciar sesión
+        <div class="form-group">
+            <label for="password_confirmation">Confirmar Contraseña</label>
+            <input
+                type="password"
+                id="password_confirmation"
+                name="password_confirmation"
+                placeholder="Repita la contraseña"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn-register">
+            Registrarse
         </button>
 
-        <div class="register-link">
-            ¿No tienes una cuenta? <a href="{{ route('register') }}">Regístrate aquí</a>
+        <div class="login-link">
+            ¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión</a>
         </div>
 
     </form>
