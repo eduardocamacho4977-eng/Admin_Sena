@@ -96,6 +96,20 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 18px;
+            text-align: center;
+            width: 100%;
+            color: #39a900;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -140,6 +154,15 @@
         </div>
 
         <div class="form-group">
+            <label for="role">Rol</label>
+            <select id="role" name="role" class="form-control" required>
+                <option value="aprendiz" selected>Aprendiz</option>
+                <option value="instructor">Instructor</option>
+                <option value="aspirante">Aspirante</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="password">Contraseña</label>
             <input
                 type="password"
@@ -165,9 +188,15 @@
             Registrarse
         </button>
 
+        <div class="mt-3 text-center">
+            <a href="{{ route('login') }}" class="text-decoration-none fw-bold" style="color: #39a900;">¿Olvidaste tu contraseña?</a>
+        </div>
+
         <div class="login-link">
             ¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión</a>
         </div>
+
+        <a href="{{ url('/') }}" class="back-link">← Volver</a>
 
     </form>
 

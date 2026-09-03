@@ -96,48 +96,95 @@
                 <i class="bi bi-sliders2 fs-2" style="color: #00A651;" aria-hidden="true"></i>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gy-3">
-                <div class="col">
-                    <a href="{{ route('area.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-diagram-3 fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Áreas</h3>
-                        <p class="text-muted mb-0">Organiza las áreas de formación.</p>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('training_center.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-building fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Centros de formación</h3>
-                        <p class="text-muted mb-0">Consulta y administra los centros.</p>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('course.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-book fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Cursos</h3>
-                        <p class="text-muted mb-0">Gestiona la oferta académica.</p>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('teacher.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-person-workspace fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Profesores</h3>
-                        <p class="text-muted mb-0">Administra instructores y docentes.</p>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('apprentice.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-people fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Aprendices</h3>
-                        <p class="text-muted mb-0">Revisa aprendices y sus avances.</p>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="{{ route('computer.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
-                        <i class="bi bi-pc-display fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
-                        <h3 class="h5 text-dark mb-1">Computadoras</h3>
-                        <p class="text-muted mb-0">Controla los equipos disponibles.</p>
-                    </a>
-                </div>
+                @admin
+                    <div class="col">
+                        <a href="{{ route('area.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-diagram-3 fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Áreas</h3>
+                            <p class="text-muted mb-0">Organiza las áreas de formación.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('training_center.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-building fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Centros de formación</h3>
+                            <p class="text-muted mb-0">Consulta y administra los centros.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('course.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-book fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Cursos</h3>
+                            <p class="text-muted mb-0">Gestiona la oferta académica.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('teacher.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-person-workspace fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Profesores</h3>
+                            <p class="text-muted mb-0">Administra instructores y docentes.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('apprentice.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-people fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Aprendices</h3>
+                            <p class="text-muted mb-0">Revisa aprendices y sus avances.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('computer.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-pc-display fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Computadoras</h3>
+                            <p class="text-muted mb-0">Controla los equipos disponibles.</p>
+                        </a>
+                    </div>
+                @elseif(auth()->user()->isInstructor())
+                    <div class="col">
+                        <a href="{{ route('apprentice.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-people fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Aprendices</h3>
+                            <p class="text-muted mb-0">Revisa aprendices y observaciones.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ route('course.index') }}" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-book fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Cursos</h3>
+                            <p class="text-muted mb-0">Gestiona la asignatura que dicta.</p>
+                        </a>
+                    </div>
+                @elseif(auth()->user()->isApplicant())
+                    <div class="col">
+                        <a href="#" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-file-earmark-text fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Postulaciones</h3>
+                            <p class="text-muted mb-0">Consulta tus solicitudes y estado.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-folder2-open fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Documentación</h3>
+                            <p class="text-muted mb-0">Carga y revisa tus documentos.</p>
+                        </a>
+                    </div>
+                @else
+                    <div class="col">
+                        <a href="#" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-journal-bookmark fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Mis cursos</h3>
+                            <p class="text-muted mb-0">Revisa tus asignaturas actuales.</p>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="card card-custom p-3 h-100 text-decoration-none">
+                            <i class="bi bi-graph-up-arrow fs-3 mb-2" style="color: #00A651;" aria-hidden="true"></i>
+                            <h3 class="h5 text-dark mb-1">Mi progreso</h3>
+                            <p class="text-muted mb-0">Consulta tu rendimiento.</p>
+                        </a>
+                    </div>
+                @endif
             </div>
         </section>
     </main>
