@@ -16,6 +16,7 @@ return new class extends Migration
             //campos    
             $table->string('name');
             $table->string('email');
+            $table->string('urlFoto')->nullable();
             
              // llaves fonaneas de area y training_center
             $table->unsignedBigInteger('area_id')->nullable();

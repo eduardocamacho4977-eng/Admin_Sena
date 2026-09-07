@@ -23,6 +23,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Ubicación</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -31,6 +32,17 @@
                     <tr>
                         <td>{{ $training_center->name }}</td>
                         <td>{{ $training_center->location }}</td>
+                        <td>
+                            @if ($training_center->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $training_center->urlFoto) }}"
+                                    alt="Imagen del centro"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('training_center.show', $training_center->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('training_center.edit', $training_center->id) }}" class="btn btn-sm btn-secondary">editar</a>

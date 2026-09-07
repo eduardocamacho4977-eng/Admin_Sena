@@ -53,6 +53,14 @@ public function create(){
 
 public function store(Request $request){
     $apprentice = Apprentice::create($request->all());
+    //ADJUNTAR EL PDF
+         $file=$request->file("urlFoto");
+
+         $nombreArchivo = "foto_".time().".".$file->guessExtension();
+         $request->file('urlFoto')->storeAs('public/images', $nombreArchivo );
+
+         $apprentice->urlFoto = $nombreArchivo;
+         $apprentice->save();
 
     return redirect()->route('apprentice.index')->with('success', 'Aprendiz creado correctamente.');
 }

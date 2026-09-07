@@ -49,7 +49,14 @@ public function create(){
 
 public function store(Request $request){
     $course = Course::create($request->all());
+    //ADJUNTAR EL PDF
+         $file=$request->file("urlFoto");
 
+         $nombreArchivo = "foto_".time().".".$file->guessExtension();
+         $request->file('urlFoto')->storeAs('public/images', $nombreArchivo );
+
+         $course->urlFoto = $nombreArchivo;
+         $course->save();
     return redirect()->route('course.index')->with('success', 'Curso creado correctamente.');
 }
 

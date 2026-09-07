@@ -14,6 +14,10 @@ class Area extends Model
     'name'
    ];
 
+   protected $guarded =[
+    'urlFoto'
+   ];
+
 
 
     public function courses(){

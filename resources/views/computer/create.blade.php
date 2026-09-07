@@ -18,6 +18,10 @@
                 <label class="form-label">Marca</label>
                 <input type="text" name="brand" class="form-control" required>
             </div>
+            <div class="mb-3">
+                <label class="form-label">Imagen</label>
+                <input type="file" name="urlFoto" class="form-control-file" accept="image/*">
+            </div>
 
             <button type="submit" class="btn btn-primary">Crear Computadora</button>
             <a href="{{ route('computer.index') }}" class="btn btn-secondary">Cancelar</a>

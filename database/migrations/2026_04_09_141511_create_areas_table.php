@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
              // Campos
             $table->string('name');
+            $table->string('urlFoto')->nullable();
             $table->timestamps();
         });
     }

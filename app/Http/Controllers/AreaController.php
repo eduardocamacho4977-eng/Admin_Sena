@@ -32,6 +32,15 @@ class AreaController extends Controller
 
   public function store(Request $request){
     $area = Area::create($request->all());
+        //ADJUNTAR EL PDF
+         $file=$request->file("urlFoto");
+
+         $nombreArchivo = "foto_".time().".".$file->guessExtension();
+         $request->file('urlFoto')->storeAs('public/images', $nombreArchivo );
+
+         $area->urlFoto = $nombreArchivo;
+         $area->save();
+  
 
     return redirect()->route('area.index')->with('success', 'Área creada correctamente.');
 }

@@ -14,6 +14,11 @@ class TrainingCenter extends Model
          'location'
     ];
 
+    protected $guarded =[
+    'urlFoto'
+   ];
+
+
     public function areas(){
         return $this->hasMany('App\Models\Area');
     }

@@ -18,17 +18,27 @@
                 <tr>
                     <th>Número</th>
                     <th>Marca</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <a href="{{ route('computer.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-circle"></i> Nueva Computadora
-                </a>
                 @foreach ($computers as $computer)
                     <tr>
                         <td>{{ $computer->number }}</td>
                         <td>{{ $computer->brand }}</td>
+                        <td>
+                            @if ($computer->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $computer->urlFoto) }}"
+                                    alt="Imagen de la computadora"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                           
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('computer.show', $computer->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('computer.edit', $computer->id) }}" class="btn btn-sm btn-secondary">editar</a>
@@ -42,5 +52,10 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mb-3">
+            <a href="{{ route('computer.create') }}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Nueva Computadora
+            </a>
+        </div>
     </div>
 @endsection

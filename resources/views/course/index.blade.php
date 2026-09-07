@@ -25,6 +25,7 @@
                     <th>Día</th>
                     <th>Área</th>
                     <th>Centro</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -35,6 +36,18 @@
                         <td>{{ $course->day }}</td>
                         <td>{{ $course->area->name}}</td>
                         <td>{{ $course->trainingCenter->name }}</td>
+                        <td>
+                            @if ($course->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $course->urlFoto) }}"
+                                    alt="Imagen del curso"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                           
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('course.show', $course->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('course.edit', $course->id) }}" class="btn btn-sm btn-secondary">editar</a>

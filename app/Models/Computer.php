@@ -14,6 +14,11 @@ class Computer extends Model
        'brand'
     ];
 
+    protected $guarded =[
+    'urlFoto'
+   ];
+
+
     public function apprentices(){
         return $this->hasMany('App\Models\Apprentice');
     }

@@ -16,6 +16,11 @@ class Course extends Model
       'training_center_id'
     ];
 
+    protected $guarded =[
+     'urlFoto'
+   ];
+
+
     public function area(){
         return $this->belongsTo('App\Models\Area');
     }

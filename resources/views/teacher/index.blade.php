@@ -26,6 +26,7 @@
                     <th>Correo</th>               
                     <th>Centro</th>         
                     <th>Área</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -37,6 +38,17 @@
                         <td>{{ $teacher->email }}</td>
                         <td>{{ $teacher->trainingCenter->name ?? 'N/A' }}</td>
                         <td>{{ $teacher->area->name ?? 'N/A' }}</td>
+                        <td>
+                            @if ($teacher->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $teacher->urlFoto) }}"
+                                    alt="Imagen del profesor"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('teacher.show', $teacher->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-sm btn-secondary">editar</a>

@@ -17,6 +17,11 @@ class Apprentice extends Model
         'computer_id'
     ];
 
+    protected $guarded =[
+    'urlFoto'
+   ];
+
+
     public function course(){
         return $this->belongsTo('App\Models\Course');
     }

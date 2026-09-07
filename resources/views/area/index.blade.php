@@ -22,13 +22,26 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($areas as $area)
+                @foreach ($areas->unique('name') as $area)
                     <tr>
                         <td>{{ $area->name }}</td>
+                        <td>
+                            @if ($area->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $area->urlFoto) }}"
+                                    alt="Imagen del área"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                           
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('area.show', $area->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('area.edit', $area->id) }}" class="btn btn-sm btn-secondary">editar</a>

@@ -38,6 +38,10 @@
                     @endforeach
                 </select>
             </div>
+              <div class="mb-3">
+                <label class="form-label">Imagen</label>
+                <input type="file" name="urlFoto" class="form-control-file" accept="image/*">
+            </div>
 
             <button type="submit" class="btn btn-primary">Crear Curso</button>
             <a href="{{ route('course.index') }}" class="btn btn-secondary">Cancelar</a>

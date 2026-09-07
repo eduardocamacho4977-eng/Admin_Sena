@@ -26,6 +26,7 @@
                     <th>Teléfono</th>
                     <th>Curso</th>
                     <th>Computadora</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -36,7 +37,19 @@
                         <td>{{ $apprentice->email }}</td>
                         <td>{{ $apprentice->cell_number }}</td>
                         <td>{{ $apprentice->course->course_number }}</td>
-                        <td>{{ $apprentice->computer->number }}</td>
+                        <td>{{ $apprentice->computer->number }}</td>                   
+                        <td>
+                            @if ($apprentice->urlFoto)
+                                <img
+                                    src="{{ asset('storage/images/' . $apprentice->urlFoto) }}"
+                                    alt="Imagen del aprendiz"
+                                    width="80"
+                                    height="80"
+                                    style="object-fit: cover; border-radius: 5px;"
+                                >
+                           
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('apprentice.show', $apprentice->id) }}" class="btn btn-sm btn-primary">mostrar</a>
                             <a href="{{ route('apprentice.edit', $apprentice->id) }}" class="btn btn-sm btn-secondary">editar</a>
